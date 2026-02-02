@@ -70,29 +70,65 @@ const listTodos = (): void => {
 
 // Remove a todo
 const removeTodo = (): void => {
-  rl.question("Enter task ID to remove: ", (input: string) => {
-    const id: number = parseInt(input);
-
-    // Use filter to create new array without the todo
-    const updatedTodos: Todo[] = todos.filter((todo: Todo) => todo.id !== id);
-
-    if (updatedTodos.length === todos.length) {
-      console.log("Task not found!\n");
-    } else {
-      todos = updatedTodos;
-      console.log("Task removed successfully!\n");
-    }
-
-    // added this lines of code to be able to print again
+  // checks if todos lenght is 0 then its console.log No one todo have been added yet.
+  if (todos.length === 0) {
+    console.log(
+      "\nNo one todo have been added yet to remove! Lets add one first and then try to remove it 🤣💪🍕\n",
+    );
     process.stdout.write("> ");
     rl.question("", (command: string) => {
       handleCommand(command);
     });
     console.log("=== Todo List App ===");
     console.log("Commands: add, list, remove, exit\n");
+  } else {
+    rl.question("Enter task ID to remove: ", (input: string) => {
+      const id: number = parseInt(input);
 
-    // showMenu();
-  });
+      // Use filter to create new array without the todo
+      const updatedTodos: Todo[] = todos.filter((todo: Todo) => todo.id !== id);
+
+      if (updatedTodos.length === todos.length) {
+        console.log("Task not found!\n");
+      } else {
+        todos = updatedTodos;
+        console.log("Task removed successfully!\n");
+      }
+
+      // added this lines of code to be able to print again
+      process.stdout.write("> ");
+      rl.question("", (command: string) => {
+        handleCommand(command);
+      });
+      console.log("=== Todo List App ===");
+      console.log("Commands: add, list, remove, exit\n");
+
+      // showMenu();
+    });
+  }
+  // rl.question("Enter task ID to remove: ", (input: string) => {
+  //   const id: number = parseInt(input);
+
+  //   // Use filter to create new array without the todo
+  //   const updatedTodos: Todo[] = todos.filter((todo: Todo) => todo.id !== id);
+
+  //   if (updatedTodos.length === todos.length) {
+  //     console.log("Task not found!\n");
+  //   } else {
+  //     todos = updatedTodos;
+  //     console.log("Task removed successfully!\n");
+  //   }
+
+  //   // added this lines of code to be able to print again
+  //   process.stdout.write("> ");
+  //   rl.question("", (command: string) => {
+  //     handleCommand(command);
+  //   });
+  //   console.log("=== Todo List App ===");
+  //   console.log("Commands: add, list, remove, exit\n");
+
+  //   // showMenu();
+  // });
 };
 
 // Handle command logic
