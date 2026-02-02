@@ -29,13 +29,23 @@ const addTodo = (): void => {
       todos.push(newTodo);
       console.log("✓ Task added successfully!\n");
     }
-    showMenu();
+
+    // added this lines of code to be able to print again
+    process.stdout.write("> ");
+    rl.question("", (command: string) => {
+      handleCommand(command);
+    });
+    console.log("=== Todo List App ===");
+    console.log("Commands: add, list, remove, exit\n");
+
+    // showMenu() makes that console.log does not log either Task cannot be empty or ✓ Task added successfully!
+    // showMenu();
   });
 };
 
 // List all todos
 const listTodos = (): void => {
-  console.clear();
+  // console.clear();
   console.log("\n=== Todo List App ===");
   console.log("Commands: add, list, remove, exit\n");
 
@@ -49,10 +59,13 @@ const listTodos = (): void => {
     console.log("");
   }
 
+  // added this lines of code to be able to print again
   process.stdout.write("> ");
   rl.question("", (command: string) => {
     handleCommand(command);
   });
+  console.log("=== Todo List App ===");
+  console.log("Commands: add, list, remove, exit\n");
 };
 
 // Remove a todo
@@ -70,7 +83,15 @@ const removeTodo = (): void => {
       console.log("Task removed successfully!\n");
     }
 
-    showMenu();
+    // added this lines of code to be able to print again
+    process.stdout.write("> ");
+    rl.question("", (command: string) => {
+      handleCommand(command);
+    });
+    console.log("=== Todo List App ===");
+    console.log("Commands: add, list, remove, exit\n");
+
+    // showMenu();
   });
 };
 
@@ -92,7 +113,14 @@ const handleCommand = (command: string): void => {
       break;
     default:
       console.log("Unknown command\n");
-      showMenu();
+      // added this lines of code to be able to print again
+      process.stdout.write("> ");
+      rl.question("", (command: string) => {
+        handleCommand(command);
+      });
+      console.log("=== Todo List App ===");
+      console.log("Commands: add, list, remove, exit\n");
+    // showMenu();
   }
 };
 
