@@ -172,6 +172,5 @@ const showMenu = (): void => {
 };
 
 // Start the app
-console.log("\n=== Todo List App ===");
-console.log("Commands: add, list, remove, exit\n");
+
 showMenu();
